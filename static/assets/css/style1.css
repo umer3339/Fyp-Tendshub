@@ -1,0 +1,213 @@
+/* poppins-regular - latin */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../font/poppins-v9-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Poppins Regular'), local('Poppins-Regular'),
+         url('../font/poppins-v9-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../font/poppins-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../font/poppins-v9-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('../font/poppins-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../font/poppins-v9-latin-regular.svg#Poppins') format('svg'); /* Legacy iOS */
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    outline: none;
+}
+.footer-mein-div{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    background: #272727;
+    padding: 20px 0px;
+}
+.footer-social-icons {
+
+width: 100%;
+height: auto;
+margin: auto;
+}
+.footer-social-icons ul{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+.footer-social-icons ul li{
+
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 0px 10px;
+    border-radius: 100%;
+    background: #32cd32;
+}
+.footer-social-icons ul li a{
+
+color: #272727;
+font-size: 25px;
+}
+.footer-social-icons ul li a i{
+    line-height: 50px;
+}
+.footer-menu-one{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    margin-top: 25px;
+}
+.footer-menu-one ul{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+
+}
+
+.footer-menu-one ul li{
+    display: inline-block;
+    margin: 0px 15px;
+
+}
+.footer-menu-one ul li a{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 550    ;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+.footer-menu-two{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    margin-top: 10px;
+}
+.footer-menu-two ul{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+.footer-menu-two ul li{
+    display: inline-block;
+    margin: 0px 15px;
+}
+.footer-menu-two ul li a{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 550;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+.footer-bottom{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    background: #32cd32;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 500;
+}
+.footer-bottom p{
+    margin-top: 5px;
+}
+
+.se-1{
+
+    margin-top: 350px;
+    float: left;
+  }
+
+.thar__img {
+    height: 100%;
+    width: 100%;
+    object-position: top center;
+    object-fit: cover;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+.thar {
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 35px;
+    margin-right: 35px;
+    
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    background: white;
+    cursor: pointer;
+    color: black;
+    transition: all 0.1s linear;
+}
+h5{
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 550;
+    line-height: 1.5em;
+    
+    
+}
+.post-text:hover{
+
+    background: #272727;
+    color: #ffffff;
+}
+.wrap{
+    width: auto; 
+    height: 500px;
+    }
+.search {
+    
+    display: flex;
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+.searchTerm {
+    width: 100%;
+    border: 3px solid #00B4CC;
+    border-right: none;
+    padding: 5px;
+    height: 36px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    background-color: transparent;
+    
+  }
+
+
+
+
+  
+.searchTerm:focus{
+    color: #00B4CC;
+  }
+  
+.searchButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+
