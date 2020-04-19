@@ -1,0 +1,160 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load static %}
+
+<style>
+       .parallex{
+            background-image: url({% static '/images/health.jpg '%});
+            background-size: cover;
+            z-index:-1;height:400px
+            background-repeat:no-repeat;
+            background-attachment:fixed;
+            opacity:0.7;
+            background-position:center;
+            min-height:350px;
+       }
+       .padding-model{
+    padding-right:10% !important;
+}
+
+.max-lines {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+.feedback-bottom {
+
+}
+.upper_dv{
+    margin-top:3%;
+    display:block
+}
+.inner_dv{
+padding:1%;
+min-height:270px;
+-webkit-box-shadow: 0px 5px 5px 5px rgba(211,211,211,0.4);
+-moz-box-shadow: 0px 5px 5px 5px rgba(211,211,211,0.4);
+box-shadow: 0px 5px 5px 5px rgba(211,211,211,0.4);
+}
+.inner_dv:hover{
+min-height:270px;
+-webkit-box-shadow: 0px 5px 5px 5px rgba(251,129,34,0.4);
+-moz-box-shadow: 0px 5px 5px 5px rgba(251,129,34,0.4);
+box-shadow: 0px 5px 5px 5px rgba(251,129,34,0.4);
+}
+
+    </style>
+
+{% include "health-banner.html" %}
+<div class="container" style="">
+        <div class="row margin-row">
+        {% for i in data %}
+        <div class="col-md-3 upper_dv" style="">
+            <div class="inner_dv" >
+                <div class="" style="background-color: #ffffff; text-align: center; cursor: pointer;min-height:250px" data-toggle="modal" data-target="#myModal{{forloop.counter0}}" id="{{i.0.8.0}}" onclick="clicked(this)">
+                    <img src="{{i.0.7.0}}" class="img-responsive" onerror="this.onerror=null; this.src='{%static 'assets/images/images.png'%}' " style="max-width: 100%; margin: auto;width:100%;height:150px" >
+                    <div class="" style="position: relative;min-height:145px">
+                        <p class="max-lines" style="">{{ i.0.3.0 }}</p>
+                        <div style="position: absolute;left:0;">
+                            <div style="text-align:left">
+                                <ul style="list-style-type: None;">
+                                    <li>Likes : {{i.0.4.0 }} </li>
+                                    <li>{{i.0.5.0 }} </li>
+                                    <li>{{i.0.6.0 }} </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <p style="position: absolute;bottom:0;">Source : Facebook {{i.0.8.0}}</p>
+                    </div>
+                </div>
+                <div class="modal padding-model" id="myModal{{forloop.counter0}}" style="z-index=-1"><!--overflow: hidden;-->
+
+    <div class="modal-dialog modal-lg"  style="z-index=-1">
+       <div class="modal-content" style="width:120%;min-height:520px;max-height:620px" style="z-index=-1">
+
+
+           <div class="modal-body" style="z-index=-1;height:auto;"><!--min-height:650px;height:550px-->
+               <div class="row">
+                   <div class="col-md-8"><!--height:520px-->
+
+                        <img src="{{i.0.7.0}}" class="img-responsive" onerror="this.onerror=null; this.src='{%static 'assets/images/images.png'%}'" style="min-width: 100%;max-height:220px;min-height:200px" >
+
+                        <div class="row" style=""><!--height:225px-->
+                            <p class="col-md-12"><span style="font-weight:600"> {{i.0.1.0}}  </span><span class="m-2">{{i.0.3.0}}</span></p>
+
+                            <div class="col-md-12 mt-2" style="font-weight:600">
+                            <span class="">Likes : {{ i.0.4.0 }}</span><span class="offset-2">{{ i.0.5.0 }}</span><span class="offset-2">{{ i.0.6.0 }}</span>
+                            </div>
+                        </div>
+
+                        <div style="max-height:200px;overflow:auto;overflow-x: hidden;"><!--border:1px solid;max-height:500px-->
+                            {% for j in i.1 %}
+                            <div class="row">
+                                <span style="font-weight:600" class="col-md-3 m-2">{{j.1}}</span><span class="col-md-8 m-2" style="text-align:justify">{{j.2}}</span><br>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                   <div class="col-md-4" style="position: relative;min-height:515px;">
+
+                        <h3>FeedBack</h3>
+                       <div>
+                            {% with val=i.0.8.0%}
+                                    {% for feedbacks in feedback %}
+
+                            {% if feedbacks.post_id == val %}
+                            <div class="row">
+                                <span class="col-md-3">{{feedbacks.username}}</span>
+                                <span class="col-md-9">{{feedbacks.feedback_comment}}</span>
+                            </div><br>
+
+                                            {% endif %}
+
+                                    {% endfor %}
+                                    {% endwith %}
+                        </div>
+                        <div class="feedback-bottom">
+                            <form style="border:1px;position: absolute;bottom:0;" action="/feedback/" method="post"><!--margin-bottom:-28%-->
+                                {% csrf_token %}
+                                <div class="row">
+
+                                <span class=" col-md-10">
+                                    <input type="text" class="post_id" hidden  name="post_id">
+                                    <input type="text" placeholder="Enter Your FeedBack Here" class="form-control" name="feedback_comment">
+                                </span>
+                                    <span class="col-md-2">
+
+                                    <button class="btn " type="submit">FD</button>
+                                </span>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+               </div>
+           </div>
+
+
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script>
+    function clicked(item) {
+        header_id=($(item).attr("id"));
+        $(".post_id").val(header_id);
+        console.log(header_id);
+    }
+
+</script>
+{% endblock %}
+
+

@@ -1,0 +1,39 @@
+
+{% load static %}
+
+<style>
+    .searchTerm {
+    width: 100%;
+    border: 3px solid #FB8122 !important;
+    border-right: none;
+    padding: 5px;
+    height: 36px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    background-color: transparent;
+    z-index:-1;
+  }
+  .searchButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #FB8122;
+    background: #FB8122;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+</style>
+
+<div class="container-fluid " >
+    <div  class="row wrap" data-vide-bg="{% static 'video/Classical.mp4' %}" data-vide-options="loop: true, muted: true" style="">
+    <div class="search">
+        <input type="text" class="searchTerm" placeholder="What are you looking for?">
+        <button type="submit" class="searchButton">
+          <i class="fa fa-search" style="font-size: 25px"></i>
+       </button>
+     </div>
+    </div>
+</div>

@@ -1,0 +1,411 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+	<style>
+.menu-area{
+	background: #E1E2E2
+}
+.dropdown-menu{
+	padding:0;
+	margin:0;
+	border:0 solid transition!important;
+	border:0 solid rgba(0,0,0,.15);
+	border-radius:0;
+	-webkit-box-shadow:none!important;
+	box-shadow:none!important
+}
+.mainmenu a, .navbar-default .navbar-nav > li > a, .mainmenu ul li a , .navbar-expand-lg .navbar-nav .nav-link{
+	color:#fff;
+	font-size:15px;
+	text-transform:capitalize;
+	padding:12px 14px;
+	font-family:'Roboto',sans-serif;
+	display: block !important
+}
+.mainmenu .active a,.mainmenu .active a:focus,.mainmenu .active a:hover,.mainmenu li a:hover,.mainmenu li a:focus ,.navbar-default .navbar-nav>.show>a, .navbar-default .navbar-nav>.show>a:focus, .navbar-default .navbar-nav>.show>a:hover{
+	color: #fff;
+	/*background: #FB8122;*/
+	outline: 0;
+	border-bottom: 5px solid #FB8122;
+	transition: all ease-in-out .2s
+
+}
+	/*==========Sub Menu=v==========*/
+.mainmenu .collapse ul > li:hover > a
+{
+	/*background: #FB8122*/
+	border-bottom: 5px solid #FB8122;
+	transition: all ease-in-out .2s
+}
+.mainmenu .collapse ul ul > li:hover > a, .navbar-default .navbar-nav .show .dropdown-menu > li > a:focus, .navbar-default .navbar-nav .show .dropdown-menu > li > a:hover
+{
+	/*background: #FB8122*/
+	border-bottom: 5px solid #FB8122;
+	transition: all ease-in-out .2s
+}
+.mainmenu .collapse ul ul ul > li:hover > a
+{
+    border-bottom: 5px solid #FB8122;
+	/*background: #FB8122*/
+	transition: all ease-in-out .2s
+}
+.mainmenu .collapse ul ul, .mainmenu .collapse ul ul.dropdown-menu
+{
+	background:#E1E2E2
+}
+.mainmenu .collapse ul ul ul, .mainmenu .collapse ul ul ul.dropdown-menu
+{
+	background:#E5E7E7
+}
+.mainmenu .collapse ul ul ul ul, .mainmenu .collapse ul ul ul ul.dropdown-menu{
+	background:#E9E2E5
+}
+	/******************************Drop-down menu work on hover**********************************/
+.mainmenu{
+	background: none;
+	border: 0 solid;
+	margin: 0;
+	padding: 0;
+	min-height:20px;
+	width: 100%
+}
+@media only screen and (min-width: 767px){
+    .mainmenu .collapse ul li:hover> ul
+    {
+	display:block
+    }
+    .mainmenu .collapse ul ul
+    {
+        position:absolute;
+        top:100%;
+        left:0;
+        min-width:250px;
+        display:none
+    }
+	/*******/
+	.mainmenu .collapse ul ul li
+    {
+        position:relative
+    }
+.mainmenu .collapse ul ul li:hover> ul
+{
+	display:block
+}
+.mainmenu .collapse ul ul ul
+{
+	position:absolute;
+	top:0;
+	left:100%;
+	min-width:250px;
+	display:none
+}
+	/*******/.mainmenu .collapse ul ul ul li
+{
+	position:relative
+}
+.mainmenu .collapse ul ul ul li:hover ul
+{
+	display:block
+}
+.mainmenu .collapse ul ul ul ul
+{
+	position:absolute;
+	top:0;
+	left:-100%;
+	min-width:250px;
+	display:none;
+	z-index:1
+}
+}
+@media only screen and (max-width: 767px)
+{
+    .navbar-nav .show .dropdown-menu .dropdown-menu > li > a
+    {
+        padding:16px 15px 16px 35px
+    }
+    .navbar-nav .show .dropdown-menu .dropdown-menu .dropdown-menu > li > a
+    {
+        padding:16px 15px 16px 45px
+    }
+}
+a{
+text-decoration: none !important;
+}
+</style>
+{% load static %}
+
+<div id="menu_area" class="menu-area" style="">
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-light navbar-expand-lg mainmenu">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <ul class="navbar-nav mr-auto">
+                        <li class="my-auto"><a href="/"><img width="75" height="70" src="{%static '/images/logo4.jpg'%}"></a></li>
+                    <div style="margin-left:100px"></div>
+                        <li class="active my-auto"><a href="/">Home <span class="sr-only"></span></a></li>
+
+                        <li class="dropdown my-auto">
+                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                <!---FASHION--->
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fashion</a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reddit</a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a href="/reddit/top31/">Top 100</a></li>
+                                                <li><a href="/reddit/fashion/">Fashion</a></li>
+                                                <li><a href="/reddit/femalefashion/">Female Fashion</a></li>
+                                                <li><a href="/reddit/FrugalFemaleFashion/">Frugal Female Fashion</a></li>
+                                                <li><a href="/reddit/frugalfemalefashion/">Frugal Male Fashion</a></li>
+                                                <li><a href="/reddit/malefashionadvice/">Frugal Male Fashion</a></li>
+                                                <li><a href="/reddit/streetwear/">Streetwear</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facebook Groups</a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a href="/fashion/fb-groups/g-top11/">Top 50 </a></li>
+                                                <li><a href="/fashion/fb-groups/g-Fashion House/">Fashion House</a></li>
+                                                <li><a href="/fashion/fb-groups/g-Pakistani Dress Designs/">Pakistani Dress Designs</a></li>
+                                                <li><a href="/fashion/fb-groups/g-Fashion Style Offical/">Fashion Style Offical</a></li>
+                                                <li><a href="/fashion/fb-groups/g-Fashion Portal/">Fashion Portal</a></li>
+
+                                                <li><a href="/fashion/fb-groups/g-Modila Fashion/">Modila Fashion</a></li>
+                                                <li><a href="/fashion/fb-groups/g-She's Corner Pakistan/">She's Corner Pakistan</a></li>
+
+                                                <li><a href="/fashion/fb-groups/g-Fashion Factory/">Fashion Factory</a></li>
+                                                <li><a href="/fashion/fb-groups/g-Bridal Fashion/">Bridal Fashion</a></li>
+                                                <li><a href="/fashion/fb-groups/g-Fashion & Stylish Dresses 4 u/">Fashion & Stylish Dresses 4 u</a></li>
+                                                <li><a href="/fashion/fb-groups/g-Pakistani Fashion Online/">Pakistani Fashion Online</a></li>
+                                                <li><a href="/fashion/fb-groups/g-Fashion & Beauty/">Fashion & Beauty</a></li>
+                                                <li><a href="/fashion/fb-groups/g-Pakistani Fashion Dresses/">Pakistani Fashion Dresses</a></li>
+                                                <li><a href="/fashion/fb-groups/g-Designer Dresses & Replicas/">Designer Dresses & Replicas</a></li>
+                                                <li><a href="/fashion/fb-groups/g-Revolution Men Fashion Hub/">Revolution Men Fashion Hub</a></li>
+                                                <!---<li><a href="/fashion/fb-groups/group17/">Group17</a></li>
+                                                <li><a href="/fashion/fb-groups/group18/">Group18</a></li>
+                                                <li><a href="/fashion/fb-groups/group19/">Group19</a></li>
+                                                <li><a href="/fashion/fb-groups/group20/">Group20</a></li>
+                                                <li><a href="/fashion/fb-groups/group21/">Group21</a></li>-->
+
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facebook Pages</a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a href="/fashion/fb-page/p-top34/">Top 50</a></li>
+                                                <li><a href="/fashion/fb-page/p-Baroque Fashion/">Baroque Fashion</a></li>
+                                                <li><a href="/fashion/fb-page/p-FnkAsia/">FnkAsia</a></li>
+                                                <li><a href="/fashion/fb-page/p-Shazia's Pakistani Fashion/">Shazia's Pakistani Fashion</a></li>
+                                                <li><a href="/fashion/fb-page/p-Fashion Central/">Fashion Central</a></li>
+                                                <li><a href="/fashion/fb-page/p-Pakistani Couture/">Pakistani Couture</a></li>
+                                                <li><a href="/fashion/fb-page/p-Amir Adnan/">Amir Adnan</a></li>
+                                                <li><a href="/fashion/fb-page/p-Emerald Fashion/">Emerald Fashion</a></li>
+                                                <li><a href="/fashion/fb-page/p-Zara Shahjahan/">Zara Shahjahan</a></li>
+                                                <li><a href="/fashion/fb-page/p-ROYAL Fashion/">ROYAL Fashion</a></li>
+                                                <li><a href="/fashion/fb-page/p-Denizen Pakistan/">Denizen Pakistan</a></li>
+                                                <li><a href="/fashion/fb-page/p-Diva Magazine Pakistan/">Diva Magazine Pakistan</a></li>
+                                                <li><a href="/fashion/fb-page/p-Almirah/">Almirah</a></li>
+                                                <li><a href="/fashion/fb-page/p-HELLO Pakistan/">HELLO! Pakistan</a></li>
+
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!----NEWS---->
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">NEWS</a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reddit</a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a href="/reddit/top100/">Top 100</a></li>
+                                                <li><a href="/reddit/news/">News</a></li>
+                                                <li><a href="/reddit/Teachers/">Teachers</a></li>
+                                                <li><a href="/reddit/teaching/">Teaching</a></li>
+                                                <li><a href="/reddit/worldnews/">WorldNews</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facebook Groups</a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a href="/news/fb-groups/g-top12/">Top 50</a></li>
+                                                <li><a href="/news/fb-groups/karachinews/">karachi News Alerts</a></li>
+                                                <li><a href="/news/fb-groups/globalnews/">Global News</a></li>
+                                                <li><a href="/news/fb-groups/urdunews/">Urdu News</a></li>
+                                                <!---<li><a href="#">news4</a></li>
+                                                <li><a href="#">news5</a></li>
+                                                <li><a href="#">news6</a></li>
+                                                <li><a href="#">news7</a></li>--->
+
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facebook Pages</a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a href="/news/fb-page/p-top14/">Top 50</a></li>
+                                                <li><a href="/news/fb-page/aljazeera/">Al-jazeera News</a></li>
+                                                <li><a href="/news/fb-page/bbcurdu/">bbc Urdu</a></li>
+                                                <li><a href="/news/fb-page/voaurdu/">VOA Urdu</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!---HEALTH--->
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">HEALTH</a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reddit</a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a href="/reddit/top/">Top 100</a></li>
+                                                <li><a href="/reddit/Health/">Health</a></li>
+                                                <li><a href="/reddit/HealthAnxiety/">Health Anxity</a></li>
+                                                <li><a href="/reddit/healthcare/">Health Care</a></li>
+                                                <li><a href="/reddit/healthIT/">Health IT</a></li>
+                                                <li><a href="/reddit/publichealth/">Public Health</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facebook Groups</a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a href="/health/fb-group/g-top8/">Top 50</a></li>
+                                                <li><a href="/health/fb-group/healthyfoodtips/">The Healthy Food Tips</a></li>
+                                                <li><a href="/health/fb-group/healthforum/">Health Forum</a></li>
+                                                <li><a href="/health/fb-group/WNHhealth/">WNH Health</a></li>
+                                                <!--<li><a href="#">health4</a></li>-->
+                                                <li><a href="/health/fb-group/healthcareprofessionals/">HealthCare Professionals</a></li>
+                                                <li><a href="/health/fb-group/health/">Health</a></li>
+
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facebook Pages</a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a href="/health/fb-page/p-top12/">Top 50</a></li>
+                                                <li><a href="/health/fb-page/worldhealthorganization/">World Health Organization</a></li>
+                                                <li><a href="/health/fb-page/healthdigest/">Health Digest</a></li>
+                                                <li><a href="/health/fb-page/womenhealth/">Women's Health</a></li>
+                                                <li><a href="/health/fb-page/healthtips/">My Health Tips</a></li>
+                                                <li><a href="/health/fb-page/homeremedies/">Top 10 Home Remedies</a></li>
+                                                <li><a href="/health/fb-page/buzzfeedhealth/">Buzzfeed Health</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!---TOURISM-->
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TOURISM</a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reddit</a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a href="/reddit/top_30/">Top 100</a></li>
+                                                <li><a href="/reddit/CozyPlaces/">Cozy Places</a></li>
+                                                <li><a href="/reddit/pakistan/">Pakistan</a></li>
+                                                <li><a href="/reddit/travel/">Travel</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facebook Groups</a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-left: -30px">
+                                                <li><a href="/tourism/fb-groups/g-top12/">Top 50</a></li>
+                                                <li><a href="/tourism/fb-groups/g-Discover Pakistan/">Discover Pakistan</a></li>
+                                                <li><a href="/tourism/fb-groups/g-Northern Areas Of Pakistan/">Northern Areas Of Pakistan</a></li>
+                                                <li><a href="/tourism/fb-groups/g-PAK BATs (Pakistan Bike Adventure Tours)/">PAK BATS (Bikes Adventure Tours)</a></li>
+                                                <li><a href="/tourism/fb-groups/g-Pakistan adventure and tourism/">Pakistan Advanture & Tourism</a></li>
+                                                <li><a href="/tourism/fb-groups/g-Pakistan Tourism/">Pakistan Tourism</a></li>
+                                                <li><a href="/tourism/fb-groups/g-Pakistan Tourism & Clean And Green Pakistan/">Pak Tourism Clean & Green</a></li>
+                                                <li><a href="/tourism/fb-groups/g-Pakistan Tourism & Weather/">Pakistan Toursim & Weather</a></li>
+                                                <li><a href="/tourism/fb-groups/g-Pakistan tourist club/">Pakistan Tourist Club</a></li>
+                                                <li><a href="/tourism/fb-groups/g-Pakistan Travell Forum/">Pakistan Travell Forum</a></li>
+                                                <li><a href="/tourism/fb-groups/g-pakistan_tourism/">Pakistan Tourism</a></li>
+                                                <li><a href="/tourism/fb-groups/g-people,culture & tourism of Pakistan.pkl/">People Culture & Tourism</a></li>
+                                                <li><a href="/tourism/fb-groups/g-The Pakistan Tourism/">The Pakistan Tourism</a></li>
+                                                <li><a href="/tourism/fb-groups/g-Northern Areas Of Pakistans/">Northern Areas Of Pakistans</a></li>
+                                                <li><a href="/tourism/fb-groups/g-tourism/">Tourism</a></li>
+                                                <li><a href="/tourism/fb-groups/g-Travel PK Pakistan/">Travel PK Pakistan</a></li>
+                                                <li><a href="/tourism/fb-groups/g-Vertical Adventure Pakistan/">Vertical Adventure Pakistan</a></li>
+                                                <li><a href="/tourism/fb-groups/g-PakistanTourism/">PakistanTourism</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facebook Pages</a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a href="/tourism/fb-page/p-top14/">Top 50</a></li>
+                                                <li><a href="/tourism/fb-page/p-Discover Paradise/">Discover Paradise</a></li>
+                                                <li><a href="/tourism/fb-page/p-Explore the Beauty of Pakistan/">Explore Bueaty of Pakistan</a></li>
+                                                <li><a href="/tourism/fb-page/p-GoGilgit.com/">GoGilgit</a></li>
+                                                <li><a href="/tourism/fb-page/p-Green Tours/">Green Tours</a></li>
+                                                <li><a href="/tourism/fb-page/p-Happy Holidays PK/">Happy Holidays PK</a></li>
+                                                <li><a href="/tourism/fb-page/p-Hill N Holiday's/">Hill n Holiday</a></li>
+                                                <li><a href="/tourism/fb-page/p-Lets Hunt Pakistan/">Lets Hunt Pakistan</a></li>
+                                                <li><a href="/tourism/fb-page/p-MountaineesPakistan/">Mountainees Pakistan</a></li>
+                                                <li><a href="/tourism/fb-page/p-Pak Tourism Club/">Pak Tourism Club</a></li>
+                                                <li><a href="/tourism/fb-page/p-Pakistan Institute of Tourism & Hotel Management Official/">PITAHTM</a></li>
+                                                <li><a href="/tourism/fb-page/p-Pakistan Nature Explorers/">Pakistan Nature Explorers</a></li>
+                                                <li><a href="/tourism/fb-page/p-Pakistan tour & tourism/">Pakistan Tour & Tourism</a></li>
+                                                <li><a href="/tourism/fb-page/p-Pakistan Toursim/">Pakistan Toursim</a></li>
+                                                <li><a href="/tourism/fb-page/p-Pakistan Tourism Development Corporation (PTDC)/">PTDC</a></li>
+                                                <li><a href="/tourism/fb-page/p-Pakistan Tourism Hub/">Pakistan Tourism Hub</a></li>
+                                                <li><a href="/tourism/fb-page/p-Pakistan Travel Places/">Pakistan Travel Places</a></li>
+                                                <li><a href="/tourism/fb-page/p-Sustainable Tourism Foundation Pakistan/">STFP</a></li>
+                                                <li><a href="/tourism/fb-page/p-The Hunza Valley/">The Hunza Valley</a></li>
+                                                <li><a href="/tourism/fb-page/p-Tourism Corporation Khyber Pakhtunkhwa/">Tourism Corporation of KP</a></li>
+                                                <li><a href="/tourism/fb-page/p-Tourism Of Pakistan TOP/">Tourism of Pakistan</a></li>
+                                                <li><a href="/tourism/fb-page/p-Tourism Pakistan(Tour-Pak)/">Tour Pak</a></li>
+                                                <li><a href="/tourism/fb-page/p-Tourism Pakistan/">Tourism Pakistan</a></li>
+                                                <li><a href="/tourism/fb-page/p-Travel Pakistan/">Travel Pakistan</a></li>
+                                                <li><a href="/tourism/fb-page/p-Travelites Tourism/">Travelites Tourism</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="my-auto"><a href="/contact/">Contact</a></li>
+                        <li class="my-auto"><a href="/about/">About Us</a></li>
+                    <div style="margin-left:200px"></div>
+
+                        {% if request.user.is_authenticated %}
+                        <li class="my-auto"><a href="/accounts/logout">Logout</a></li>
+                        <li class="my-auto"><a href="#">Hello, {{request.user.username}}</a></li>
+                        {% else %}
+                        <li class="my-auto"><a href="/accounts/login">Login</a></li>
+                        <li class="my-auto"><a href="/accounts/register">Register</a></li>
+                        {% endif %}
+
+
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function($){
+	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+	  if (!$(this).next().hasClass('show')) {
+		$(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+	  }
+	  var $subMenu = $(this).next(".dropdown-menu");
+	  $subMenu.toggleClass('show');
+
+	  $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+		$('.dropdown-submenu .show').removeClass("show");
+	  });
+
+	  return false;
+	});
+})(jQuery)
+</script>

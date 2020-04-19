@@ -1,0 +1,59 @@
+news_groups_name = ['news1',"news2","news3","news4","news5","news6","news7"]#Guudo
+health_groups_name = ['health1',"health2","health3","health4","health5","health6"]#Guudo
+news_pages_name = ["Page_News1","Page_News2","Page_News3"]#Guudo
+health_pages_name = ["Page_Health1","Page_Health2","Page_Health3","Page_Health4","Page_Health5","Page_Health6"]#Guudo
+#C:\Users\yassa\Desktop\P2\Scrape Data Singles File\Guudo
+
+tourism_groups_name = ['group1',"group2","group3","group4","group5","group6",'group7','group8',"group9","group10","group11"
+                       ,'group12',"group13","group14","group15","group16",'group17',"group18"]#ME # Group 4 not working
+#C:\\Users\\yassa\\PycharmProjects\\FBScraping\\Tourism CSV FILE Version 1\\Group Data
+fashion_groups_name = ['group1',"group2","group3","group4","group6",'group7',"group9","group10","group11"
+                       ,'group12',"group13","group14","group15","group16",'group17',"group18","group19","group20","group21" ]#ME
+#C:\\Users\\yassa\\PycharmProjects\\FBScraping\\Fashion CSV FILE Version 1\\Group Data
+tourism_pages_name = ["page1","page2","page3","page4","page5","page6","page7","page8","page9","page10","page11","page12"
+                     ,"page13","page14","page15","page16","page17","page18","page19","page20","page21","page22","page23","page24"]#ME
+#C:\\Users\\yassa\\PycharmProjects\\FBScraping\\Tourism CSV FILE Version 1\\Page Data
+fashion_pages_name = ["page0","page1","page2","page3","page4","page5","page6","page7","page8","page9","page10","page11","page12"
+                     ,"page13"]#ME
+
+def sentiment_analyzer_scores(sentence):
+    score = analyser.polarity_scores(sentence)
+    #print(score)
+    df["emojiSentiment"][count]=score
+
+for fileNo in range(0,len(health_pages_name)):#CHANGE REQ
+    try:                                                                        #Check_all_path
+        df = pd.read_csv("C:\\Users\\yassa\\Desktop\\P2\\Scrape Data Singles File\\Guudo\\filter_pages\\"+"health"+"filter"+health_pages_name[fileNo]+".csv")
+        comt_senti=df['textOnly'].replace(np.NaN,'None')
+        df["emojiSentiment"]=""
+        df["textSentiment"]=""    
+        y=0
+        try:
+            for x in comt_senti:
+                x=str(x)
+                blob = TextBlob(x)
+                #blob = TextBlob(text)
+                #print(blob.sentiment.polarity,x)
+                df["textSentiment"][y] = blob.sentiment.polarity
+                y=y+1
+                #print("....")
+
+        except:
+            print("error1")
+
+        analyser = SentimentIntensityAnalyzer()
+        emoji=df['emojiOnly'].replace(np.NaN,'')
+        count=0
+        try:
+            for x in emoji:
+                sentiment_analyzer_scores(x)
+                count =count + 1
+        except:
+            print("error2")
+        print(str(fileNo)+" Done ")
+        print("-----------------------")
+        print(df)
+                                                                          #Check_all_path
+        df=df.to_csv("C:\\Users\\yassa\\Desktop\\P2\\Scrape Data Singles File\\Guudo\\filter_pages\\"+"health"+"filter"+health_pages_name[fileNo]+".csv")
+    except Exception as e:
+        print(str(fileNo)+" file not readable "+"EXCEPTION :"+ str(e))

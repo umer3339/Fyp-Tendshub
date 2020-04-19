@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% include "links.html" %}
+    <link rel="icon" src="{%static '/images/logo4.jpg'%}" href="{%static '/images/logo4.jpg'%}">
+    <title title="TrendsHUB | Explore the World" style="border-radius: 25px;">TrendsHUB</title>
+    <style>
+         body {
+
+            margin: 0pc;
+            padding: 0px;
+            background-attachment: fixed;
+            font-family: 'Poppins', sans-serif !important;
+            font-size:12px !important;
+       }
+    </style>
+</head>
+<body class="bg-light" ><!--style="background:#E1E2E2 !important"--->
+    {% include "header.html" %}
+    {% block content %}
+
+    {% endblock %}
+
+    {% include "footer.html" %}
+
+</body>
+</html>

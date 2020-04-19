@@ -1,0 +1,217 @@
+import praw
+from praw.models import MoreComments
+import datetime
+
+
+'''
+ExplorePakistan
+pakistan
+tourism
+travel
+#india
+CozyPlaces
+
+sports
+cricket
+soccer
+hockey
+MMA
+nba
+baseball
+formula1
+tennis
+
+news
+bbc
+worldnews
+
+Health
+healthcare
+mentalhealth
+HealthAnxiety
+healthIT
+publichealth
+
+fashion
+FrugalFemaleFashion
+malefashion
+FashionReps
+frugalmalefashion
+femalefashion
+streetwear
+malefashionadvice
+
+education
+teaching
+todayilearned
+Teachers
+'''
+f = open("Teachers.csv", "w", encoding='UTF-8')
+f.write('Post No,Post User Name,Post Title,Post Text,Post Picture, Post Video,Post Time And Date,Post Like #,Post Comment #,Comment No,Comment,Comment User Name\n')
+#file.writerow(['Post Url,Post Title,Post Text,Post User Name,Post Time And Date,Post Like,Post Comment,Comment,Comment User Name'])
+reddit = praw.Reddit(user_agent='Checking',
+                     client_id='FuNSEZ4kBCkvKQ', client_secret="r7zNZKz3K6Ch8r0X7-ce7MHpgT0",
+                     username='*******', password='********')
+
+''''''
+#Hot post of subreddit
+subreddit = reddit.subreddit('Teachers')
+hot_python = subreddit.hot(limit=100)
+
+post = 1
+post_detail=[]
+comment_author_name_detail=[]
+comment_detail=[]
+
+#Post data
+for submission in hot_python:
+    detail = []
+    print(dir(submission))
+
+
+    video_dictionary=submission.media
+    try:
+        #print("video_dictionary :", video_dictionary)
+        print("video_dictionary :",video_dictionary['reddit_video']['fallback_url'])
+    except:
+        pass
+
+    print(submission.thumbnail)
+    print("---...............---")
+    print("post :", post)
+    # print(submission.title)
+    # print(submission)
+    title=submission.title
+    title=str(title).replace('\n',' ')
+    print(submission.author)
+    print(submission.title)
+    text = submission.selftext
+    text = str(text).replace('\n', ' ')
+    print(submission.selftext)
+    video_dictionary = submission.media
+    try:
+        print(submission.thumbnail)
+    except:
+        pass
+
+    try:
+        # print("video_dictionary :", video_dictionary)
+        print("video_dictionary :", video_dictionary['reddit_video']['fallback_url'])
+    except:
+        pass
+    #print(submission.url)  # post url
+    print(submission.num_comments)  # No of comment on a post
+    print(submission.score)  # No of vote/score on a post
+    # post author name
+    print(datetime.datetime.fromtimestamp(submission.created))  # post time created
+
+    try:
+        detail.append(submission.author.name)
+
+    except:
+        detail.append("")
+    detail.append(title)
+    detail.append(text)
+    #detail.append(submission.url)
+    try:
+        detail.append(submission.thumbnail)
+    except:
+        detail.append("No picture")
+    try:
+        detail.append(video_dictionary['reddit_video']['fallback_url'])
+    except:
+        detail.append("No video")
+
+    detail.append(datetime.datetime.fromtimestamp(submission.created))
+    detail.append(submission.num_comments)
+    detail.append(submission.score)
+
+    post = post + 1
+    print("---...............---")
+    count = 0
+    comments = submission.comments.list()
+
+    comment_author_name = []
+    comment_text = []
+
+    #Post Comments
+    for comment in comments:
+        try:
+            print("***************")
+            print(comment.body)
+            comment_data=comment.body
+            comment_data=str(comment_data).replace('\n'," ")
+
+            print(comment.author.name)
+            if (comment_author_name != "[deleted]"):
+                comment_author_name.append(comment.author.name)
+                comment_text.append(comment_data)
+            else:
+                pass
+            #comment_author_name.append(comment.author.name)
+            print("comment # :", count)
+            count = count + 1
+            print("**************")
+            '''
+            if len(comment.replies) > 0:
+                try:
+                    for reply in comment.replies:
+                        print("-------------")
+                        print("REPLY: ", reply.body)
+                        print("-------------")
+                except:
+                    pass
+            '''
+        except:
+            pass
+
+
+    #if not submission.stickied:
+
+
+    post_detail.append(detail)
+    comment_author_name_detail.append(comment_author_name)
+    comment_detail.append(comment_text)
+print(len(post_detail))
+print(post_detail)
+print(len(comment_author_name_detail))
+#print(comment_author_name_detail)
+#print(comment_detail)
+print(len(comment_detail))
+length=len(post_detail)
+
+#CSV filing
+for i in range(0, length):
+    lm = 0
+    
+    f.write(str(i + 1) + ",")
+    
+    for j in post_detail[i]:
+        data = str(j).replace(",", " ")
+        #print(data)
+        f.write(data + ',')
+
+    for k,l in zip(comment_author_name_detail[i],comment_detail[i]):
+        f.write(str(lm) + ",")
+        data1 = str(k).replace(",", " ")
+        f.write(data1 + ',')
+        data2 = str(l).replace(",", " ")
+        f.write(data2 + ',')
+
+        f.write("\n")
+        f.write("," + "," + "," + "," + "," + "," + "," + ","+"," )
+        lm= lm+1
+    '''   
+    for k in comment_author_name_detail[i]:
+        data = str(k).replace(",", " ")
+        #print(data)
+        f.write(data + ',')
+
+    for l in comment_detail[i]:
+        data = str(l).replace(",", " ")
+        #print(data)
+        f.write(data + ',')
+    '''
+    f.write("\n")
+
+f.close()

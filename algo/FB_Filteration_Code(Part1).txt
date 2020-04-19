@@ -1,0 +1,100 @@
+news_groups_name = ['news1',"news2","news3","news4","news5","news6","news7"]#Guudo
+health_groups_name = ['health1',"health2","health3","health4","health5","health6"]#Guudo
+news_pages_name = ["Page_News1","Page_News2","Page_News3"]#Guudo
+health_pages_name = ["Page_Health1","Page_Health2","Page_Health3","Page_Health4","Page_Health5","Page_Health6"]#Guudo
+
+tourism_groups_name = ['group1',"group2","group3","group4","group5","group6",'group7','group8',"group9","group10","group11"
+                       ,'group12',"group13","group14","group15","group16",'group17',"group18"]#ME # Group 4 not working
+fashion_groups_name = ['group1',"group2","group3","group4","group6",'group7',"group9","group10","group11"
+                       ,'group12',"group13","group14","group15","group16",'group17',"group18","group19","group20","group21" ]#ME
+tourism_pages_name = ["page1","page2","page3","page4","page5","page6","page7","page8","page9","page10","page11","page12"
+                     ,"page13","page14","page15","page16","page17","page18","page19","page20","page21","page22","page23","page24"]#ME
+fashion_pages_name = ["page0","page1","page2","page3","page4","page5","page6","page7","page8","page9","page10","page11","page12"
+                     ,"page13"]#ME page6  not working
+
+def extract_emojis(str):
+    return ''.join(c for c in str if c in emoji.UNICODE_EMOJI)
+
+for fileNo in range(0,len(health_pages_name)):#change required
+    
+    #Check_all_path
+    #C:\\Users\\yassa\\Desktop\\P2\\Scrape Data Singles File\\Guudo\\PagesFiles\\
+    #C:\Users\yassa\PycharmProjects\FBScraping\Tourism CSV FILE Version 1\Groups Data
+    try:
+        #Change path
+        df = pd.read_csv("C:\\Users\\yassa\\Desktop\\P2\\Scrape Data Singles File\\Guudo\\Pages\\"+health_pages_name[fileNo]+".csv",encoding='utf-8', error_bad_lines=False)
+        df = df.dropna(how='all')
+        df["emojiOnly"]=""
+        df["textOnly"]=""
+        df["emojiSentiment"]=""
+        df["textSentiment"]=""
+
+        try:
+            
+            df[' Post No'] = df[' Post No'].ffill(axis = 0)
+            df['Post User Name'] = df['Post User Name'].ffill(axis = 0)
+            df['Post User Image'] = df['Post User Image'].ffill(axis = 0)
+            df['Post Time And Date'] = df['Post Time And Date'].ffill(axis = 0)
+            df['Post User Status'] = df['Post User Status'].ffill(axis = 0)
+            df['Post Link'] = df['Post Link'].ffill(axis = 0)
+            df['Post Like'] = df['Post Like'].ffill(axis = 0)
+            df['Post Comment'] = df['Post Comment'].ffill(axis = 0)
+            df['Post Share'] = df['Post Share'].ffill(axis = 0)
+            df['Post video'] = df['Post video'].ffill(axis = 0)
+            df['Post Image'] = df['Post Image'].ffill(axis = 0)
+            df['Page Name'] = df['Page Name'].ffill(axis = 0)
+            df['Page DP'] = df['Page DP'].ffill(axis = 0)
+            print("Page Name")
+            print("*****")
+        except:
+            df[' Post No'] = df[' Post No'].ffill(axis = 0)
+            df['Post User Name'] = df['Post User Name'].ffill(axis = 0)
+            df['Post User Image'] = df['Post User Image'].ffill(axis = 0)
+            df['Post Time And Date'] = df['Post Time And Date'].ffill(axis = 0)
+            df['Post User Status'] = df['Post User Status'].ffill(axis = 0)
+            df['Post Link'] = df['Post Link'].ffill(axis = 0)
+            df['Post Like'] = df['Post Like'].ffill(axis = 0)
+            df['Post Comment'] = df['Post Comment'].ffill(axis = 0)
+            df['Post Share'] = df['Post Share'].ffill(axis = 0)
+            df['Post video'] = df['Post video'].ffill(axis = 0)
+            df['Post Image'] = df['Post Image'].ffill(axis = 0)
+            df['Group Name'] = df['Group Name'].ffill(axis = 0)
+            df['Group DP'] = df['Group DP'].ffill(axis = 0)
+            print("Group Name")
+            #print("*****")
+        #SEPERATING EMOJI & TEXT From Comments
+
+        df = df.replace(np.NaN,'' )
+        df = df.set_index([' Post No','Post User Name','Post User Image', 'Post Time And Date','Post User Status',
+                                   'Post Link','Post Like','Post Comment','Post Share','Post video','Post Image',
+                              ])
+        
+        
+        for i in range(0,len(df['Comment'])):
+            try:
+                val=df['Comment'][i] 
+                #print(val)
+                final=extract_emojis(val)
+                df["emojiOnly"][i]=final
+
+                if len(final) > 0:
+                    for k in range(0,len(final)):
+                        #print(final[k])
+                        val=val.replace(final[k],"")
+                df["textOnly"][i]=val
+                #print(final)
+                #print(val)
+            except:
+                pass
+    
+        
+        #Sentiment of Emoji & Comment
+                
+        print(str(fileNo)+" Done ")
+        print("-----------------------")
+        
+        #Check_all_path                                                            
+        df.to_csv("C:\\Users\\yassa\\Desktop\\P2\\Scrape Data Singles File\\Guudo\\filter_pages\\"+"health"+"filter"+health_pages_name[fileNo]+".csv")
+        #break
+    except Exception as e:
+        print(str(fileNo)+" file not readable "+"EXCEPTION :"+ str(e))

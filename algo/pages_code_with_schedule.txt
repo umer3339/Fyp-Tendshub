@@ -1,0 +1,475 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import time
+from selenium import webdriver
+from bs4 import BeautifulSoup as bs, BeautifulSoup
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+import datefinder
+import datetime
+import schedule
+#import Options
+
+pageName=["Tourism Corporation Khyber Pakhtunkhwa","Pakistan Tourism","Lets Hunt Pakistan",
+          "Pakistan Tourism Development Corporation (PTDC)"]
+print(len(pageName))
+
+for i in range(0,len(pageName)):
+    
+    f = open("abi_"+str(pageName[i])+'.csv', "w", encoding='UTF-8')
+    f.write(' Post No,Post User Name,Post User Image,Post Time And Date,Post User Status,Post Link,Post Like,Post Comment,Post Share,Post video,Post Image,Comment No,Comment,Comment Image,Comment User Name\n')
+    f.close()
+
+
+
+def pageCode():
+
+    page_name_list = ["https://www.facebook.com/kptourism/posts/",
+                      "https://www.facebook.com/pakistantourismofficial/posts/",
+                      "https://www.facebook.com/letshuntpakistan.official/posts/",
+                      "https://www.facebook.com/ptdc.pk/posts/"]
+
+    pageName1 = ["Tourism Corporation Khyber Pakhtunkhwa", "Pakistan Tourism", "Lets Hunt Pakistan",
+                "Pakistan Tourism Development Corporation (PTDC)"]
+
+    for i in range(0, len(page_name_list)):
+        options = Options()
+        #chrome_options.add_argument("--headless")
+        options.add_argument("--disable-popup-blocking")
+        prefs = {"profile.default_content_setting_values.notifications": 2}
+        options.add_experimental_option("prefs", prefs)
+        # driver = webdriver.Chrome(options=options)
+        driver = webdriver.Chrome(options=options,
+                                  executable_path=r'C:\Users\yassa\PycharmProjects\FBScraping\chromedriver.exe')
+
+        print("Headless Chrome Initialized")
+
+        driver.get('https://www.facebook.com')
+        try:
+            login = driver.find_element_by_id("email").send_keys("egyle_eye@yahoo.com")  # Email
+            password = driver.find_element_by_id("pass").send_keys("yassar1234567890")  # Password
+            driver.find_element_by_id("loginbutton").click()
+        except:
+            login = driver.find_element_by_xpath("//input[contains(@name,'email')]").send_keys(
+                "egyle_eye@yahoo.com")  # Email
+            password = driver.find_element_by_xpath("//input[contains(@name,'pass')]").send_keys(
+                "yassar1234567890")  # Password
+            driver.find_element_by_id("//button[contains(@name,'login')]").click()
+
+        driver.get(page_name_list[i])
+        options.add_argument("--disable-popup-blocking")
+        # options.
+        timeout = 5
+
+        time.sleep(10)
+
+        try:
+            element_present = EC.presence_of_element_located((By.CLASS_NAME, 'userContentWrapper'))
+            WebDriverWait(driver, timeout).until(element_present)
+        except TimeoutException:
+            print("Timed out waiting for page to load")
+
+        postdetails = []
+        f = open("abi_"+pageName1[i]+'.csv', "a", encoding='UTF-8')
+        #f.write("\n")
+
+        # f.write(
+        #  ' Post No,Post User Name,Post User Image,Post Time And Date,Post User Status,Post Link,Post Like,Post Comment,Post Share,Post video,Post Image,Comment No,Comment,Comment User Name,Comment Image,Page Name,Page DP\n')
+
+        # f.write(str(pageName)+",")
+
+        post = driver.find_elements_by_xpath("//div[contains(@class,'userContentWrapper')]")[:5]
+
+        print("Length of posts")
+        print(len(post))
+        nocount = 1
+        time.sleep(5)
+        commentdetails = []
+        postusercommentdetail = []
+        postusercommentimagedetail = []
+        for x in post:
+            print("loop")
+            # click = x.find_element_by_class_name('see_more_link_inner').click()
+
+            try:
+                # See more status click & show more comment clicks
+                print("try show more text")
+                click1 = x.find_element_by_class_name('see_more_link_inner').click()
+                print("try1 show more text")
+            except:
+                print("except")
+                pass
+
+            try:
+                # See more status click & show more comment clicks
+                print("try See more comment")
+                # click1 = x.find_element_by_class_name('see_more_link_inner').click()
+                x.find_element_by_xpath("//a[@class='_4sxc _42ft']").click()
+
+                print("try1 See more comment")
+            except:
+                print("except")
+                pass
+
+            try:
+                # See more status click & show more comment clicks
+                print("try See more comment 2222")
+                # click1 = x.find_element_by_class_name('see_more_link_inner').click()
+                x.find_element_by_xpath(".//a[@class='_4sxc _42ft']").click()
+                print("try1 See more comment 33333333")
+            except:
+                print("except")
+                pass
+
+            time.sleep(2)
+
+        post = driver.find_elements_by_xpath("//div[contains(@class,'userContentWrapper')]")[:5]
+        for x in post:
+
+            print("\n*****")
+            print("post " + str(nocount))
+            postcomments = []
+            postusercomment = []
+            postusercommentimage = []
+
+            time.sleep(2)
+            try:
+
+                replies = x.find_elements_by_xpath("(.//div[contains(@class,'_4swz _1i3s _293g')])")
+                for rep in replies:
+                    try:
+                        rep = x.find_element_by_xpath(".//a[@class='_4sxc _42ft']")
+                        rep.click()
+                        print("replies working")
+                    except Exception as e:
+                        print("replies not working")
+                        print(e)
+
+                comment_user_text = x.find_elements_by_xpath("(.//div[contains(@class,'_680y')])")
+                imgsrc = x.find_elements_by_xpath(".//img[contains(@class,'_3me-')]")
+
+                print(len(comment_user_text))
+                print(len(imgsrc))
+
+                print("**********************************")
+
+                # Click see more Comment
+                for seemore in comment_user_text:
+
+                    try:
+                        # check with x to_5v47 fss
+                        clicking = seemore.find_element_by_xpath("(.//a[contains(@class,'_5v47 fss')])")
+                        clicking.click()
+                        print("Working 1111")
+                    except Exception as e:
+                        print("11")
+                        # print(e)
+                        pass
+
+                for ct, imsrc in zip(comment_user_text, imgsrc):
+                    time.sleep(2)
+                    print(str(ct) + "image and comment")
+                    print(str(imsrc))
+                    x = imsrc.get_attribute("src")
+                    z = imsrc.get_attribute("alt")
+                    print(z)
+                    print(x)
+
+                    if (
+                            z == "Muhammad Yassar Farooq" or x == "https://scontent.fkhi6-1.fna.fbcdn.net/v/t1.0-1/p32x32/29513022_1584002628382080_6478876168344753001_n.jpg?_nc_cat=104&_nc_ht=scontent.fkhi6-1.fna&oh=54fe8374b2964d40da38e6556bb321fd&oe=5D9775C0"):
+                        print("failing")
+                        pass
+                    else:
+                        postusercommentimage.append(z)
+                        postusercomment.append(x)
+
+                    asd = """ """ + ct.text
+                    mystr = asd.replace('"', '')
+                    mystr = mystr.replace('\n', '')
+                    mystr = mystr.replace(z, '')
+                    print(mystr)
+                    postcomments.append(mystr)
+
+            except Exception as e:
+                postcomments.append("No comments on this post")
+
+            commentdetails.append(postcomments)
+            postusercommentdetail.append(postusercomment)
+            postusercommentimagedetail.append(postusercommentimage)
+
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        post = soup.findAll('div', {'class': 'userContentWrapper'}, limit=5)
+        count = 1
+        currentDT = datetime.datetime.now()
+        print(currentDT.strftime("%Y-%m-%d %H:%M"))
+        z = 0
+        time.sleep(5)
+
+        pageName = soup.title.string
+        print(soup.title.string)
+        PageDp = soup.find_all('img', {'class': '_4on7 _3mk2 img'}, src=True)
+
+        for link in PageDp:
+            PageProfilePic = link.get('src')
+            print(PageProfilePic)
+        pageName = pageName.replace("public group | Facebook", "")
+        pageName = pageName.replace("closed group | Facebook", "")
+        print(pageName)
+
+        for x in post:
+            print()
+            print("**********************")
+
+            details = []
+            print("post " + str(count))
+            # f.write(str(count))
+            full_div = x.text + " "
+
+            # user Name
+            profile_name = x.findAll('span', {'class': 'fwb'})
+            for profile in profile_name:
+                # text = profile[z].text
+                print(profile.text)
+                details.append(profile.text)
+                break
+
+            # USER PIC
+            img_map = x.find_all('img', {'class': '_s0 _4ooo _5xib _5sq7 _44ma _rw img'}, src=True)
+            if (len(img_map) > 0):
+                for pic in img_map:
+                    text = pic['src']
+                    print(text)
+                    details.append(text)
+            else:
+                details.append("")
+
+            # POST TIME AND DATE
+            matches = x.findAll('span', {'class': 'timestampContent'})
+            for dates in matches:
+                print(dates.text)
+                details.append(dates.text)
+                break
+
+            # POST PARAGRAPH
+            call = ""
+            paragraph = x.findAll('div', {'class': 'userContent'})
+            # array_paragraph = [paragraph]
+            for textpara in paragraph:
+                print(textpara.text)
+                call += textpara.text + " "
+            call = str(call).replace("see more", "")
+            details.append(call)
+            print(call)
+
+            # POST LINK OR ANCHOR
+            paragraph_link = x.findAll('a', {'class': '_52c6'}, href=True)
+            if (len(paragraph_link) > 0):
+
+                for par_link in paragraph_link:
+                    href = par_link['href']
+                    print(href)
+                    details.append(href)
+            else:
+                print("No link share")
+                details.append("No link was shared")
+
+            # POST LIKES
+            likes = x.findAll('span', {'class': '_3dlh'})
+            if (len(likes) > 0):
+                for text in likes:
+                    like = text.text
+                    print(like + str(" likes"))
+                    details.append(like)
+                    break
+            else:
+                like = "0" + str("")
+                print(like)
+                details.append(like)
+
+            # NUMBER OF SHARE AND COMMENTS
+            no_share_comment = x.findAll('div', {'class': '_4vn1'})
+            if (len(no_share_comment) == 0):
+                details.append("0 Comment")
+                details.append("0 Share")
+            else:
+                for comment in no_share_comment:
+                    print("commnents")
+                    p = comment.findAll('a', {'class': '_3hg- _42ft'})
+                    if (len(p) > 0):
+                        for text in p:
+                            print(text.text)
+                            details.append(str(text.text))
+                    else:
+                        print("0 comment")
+                        details.append(str("0 Comment"))
+
+                for share in no_share_comment:
+                    print("share")
+                    p = share.findAll('a', {'class': '_3rwx _42ft'})
+                    if (len(p) > 0):
+                        for text in p:
+                            print(text.text)
+                            details.append(str(text.text))
+                    else:
+                        print("0 share")
+                        details.append(str(" 0 share"))
+
+            # POST VIDEO
+
+            video = x.findAll('video', {'class': '_ox1 _21y0'}, src=True)
+            if (len(video) > 0):
+                for vid in video:
+                    vid_src = vid["src"]
+                    print(vid_src)
+                    details.append(str(vid_src))
+            else:
+                details.append("No video was share")
+
+            # POST IMAGES
+            img_map = x.find_all('img', {'class': '_a3f img'}, src=True)
+            img_multi = x.find_all('img', {'class': '_46-i img'}, src=True)
+            img_single_width = x.find_all('img', {'class': 'scaledImageFitWidth img'}, src=True)
+            img_single_height = x.find_all('img', {'class': 'scaledImageFitHeight img'}, src=True)
+
+            if (len(img_map) > 0):
+                x = 0
+                for pic in img_map:
+                    x += 1
+                    print(str(x) + "map")
+                    data = pic['src']
+                    print(data)
+                    details.append(data + ",")
+            elif (len(img_multi) > 0):
+                x = 0
+                for pic in img_multi:
+                    x += 1
+                    print(str(x) + "multi")
+                    data = pic['src']
+                    print(data)
+                    details.append(data + ",")
+                    break
+            elif (len(img_single_width) > 0):
+                x = 0
+                for pic in img_single_width:
+                    print(str(x) + "single")
+                    data = pic['src']
+                    print(data)
+                    details.append(data)
+                    break
+            elif (len(img_single_height) > 0):
+                x = img_single_height
+                for pic in img_single_height:
+                    print(str(x) + "single")
+                    data = pic['src']
+                    print(data)
+                    details.append(data)
+                    break
+
+            else:
+                details.append("No image was share")
+
+            z += 1
+            count += 1
+            postdetails.append(details)
+
+            print("**********************")
+
+        print(len(postdetails))
+        print(len(commentdetails))
+        print(len(postusercommentdetail))
+        print(len(postusercommentimagedetail))
+        length = len(commentdetails)
+        pagenumber = 0
+
+        for i in range(0, length):
+            lm = 0
+
+            f.write(str(i + 1) + ",")
+            for j in postdetails[i]:
+                data = str(j).replace(",", " ")
+                print(data)
+                f.write(data + ',')
+
+            # Comments detail
+
+            for (k, l, m) in zip(commentdetails[i], postusercommentimagedetail[i], postusercommentdetail[i]):
+                f.write(str(lm) + ",")
+
+                data_comment = str(k).replace(",", " ")
+                data_comment = str(data_comment).replace(str(l), "")
+                data_comment = str(data_comment).replace("Top fan", "")
+
+                f.write(data_comment + ',')
+                f.write(l + ",")
+                f.write(m + ",")
+
+                #        if (pagenumber == 0):
+                #           f.write(pageName + ",")
+                #          f.write(PageProfilePic + ",")
+                #         pagenumber=pagenumber+1
+
+                f.write('\n' + ",")
+                f.write(',' + ',' + ',' + ',' + ',' + ',' + ',' + ',' + ',' + ',')
+                print(data)
+                print(k)
+                print(str(lm) + "comment #")
+                lm += 1
+            f.write("\n")
+
+            print("......")
+        '''
+        pagenumber = 0
+        for i in range(0, length):
+            lm = 0
+
+            f.write(str(i + 1) + ",")
+            for j in postdetails[i]:
+                data = str(j).replace(",", " ")
+                print(data)
+                f.write(data + ',')
+
+            # Comments detail
+            for k in commentdetails[i]:
+                data = str(k).replace(",", " ")
+                data = str(k).replace("Top fan", "")
+                f.write(str(lm) + ",")
+                f.write(data + ',')
+                commentimage(lm)
+                commentname(lm)
+        '''
+
+        # if (pagenumber == 0):
+        #   f.write(pageName + ",")
+        #  f.write(PageProfilePic + ",")
+        # pagenumber=pagenumber+1
+        '''
+                # hamesha phli image la rha hai
+                f.write('\n' + ",")
+                f.write(',' + ',' + ',' + ',' + ',' + ',' + ',' + ',' + ',' + ',')
+
+                print(data)
+                print(k)
+                print(str(lm) + "comment #")
+                lm += 1
+
+            f.write("\n")
+            print("......")
+        '''
+
+        f.close()
+
+    # schedule.every(10).seconds.do(job)
+
+
+schedule.every(1).minutes.do(pageCode)
+print("here")
+# schedule.every().hour.do(job)
+# schedule.every().day.at("10:30").do(job)
+
+while 1:
+    schedule.run_pending()
+    print("......")
+    time.sleep(1)

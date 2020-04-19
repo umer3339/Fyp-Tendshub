@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<style>
+.parallex{
+    background-image: url({% static '/images/fashion.jpg '%});
+    background-image: url({% static '/images/fashion.jpg '%});
+    background-image: url({% static '/images/health.jpg '%});
+    background-image: url({% static '/images/fashion.jpg '%});
+
+    background-size: cover;
+    z-index:-1;
+    height:400px
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    opacity:0.7;
+    background-position:center;
+    min-height:350px;
+}
+a{
+    text-decoration: none !important;
+}
+.upper_dv{
+    margin-bottom:1%;
+    display:block
+}
+.inner_dv{
+padding:1%;
+min-height:270px;
+-webkit-box-shadow: 0px 5px 5px 5px rgba(211,211,211,0.4);
+-moz-box-shadow: 0px 5px 5px 5px rgba(211,211,211,0.4);
+box-shadow: 0px 5px 5px 5px rgba(211,211,211,0.4);
+}
+.inner_dv:hover{
+min-height:270px;
+-webkit-box-shadow: 0px 5px 5px 5px rgba(251,129,34,0.4);
+-moz-box-shadow: 0px 5px 5px 5px rgba(251,129,34,0.4);
+box-shadow: 0px 5px 5px 5px rgba(251,129,34,0.4);
+}
+.margin-row{
+ margin-top:5%
+}
+.inner_image{
+min-height:270px;max-height:271
+}
+</style>
+{% include "slider.html" %}
+    <div class="container" style="margin:3%">
+        <h3>Reddit</h3>
+        <div class="row margin-row" class="">
+
+        <div class="col-md-3 upper_dv" style="">
+            <div class="inner_dv">
+                <a href="/reddit/top31/"><img class="inner_image" src="{%static '/images/fashion1.jpeg'%}" style=""></a>
+            </div>
+        </div>
+        <div class="col-md-3 upper_dv" style="">
+            <div class="inner_dv">
+                <a href="/reddit/top100/"><img class="inner_image" src="{%static '/images/news1.jpg'%}"></a>
+            </div>
+        </div>
+        <div class="col-md-3 upper_dv" style="">
+            <div class="inner_dv">
+                <a href="/reddit/top/"><img class="inner_image" src="{%static '/images/health1.jpg'%}"></a>
+            </div>
+        </div>
+        <div class="col-md-3 upper_dv" style="">
+            <div class="inner_dv">
+                <a href="/reddit/top_30/"><img class="inner_image" src="{%static '/images/tour1.jpg'%}"></a>
+            </div>
+        </div>
+        </div>
+
+        <h3>FaceBook Groups</h3>
+        <div class="row margin-row">
+
+        <div class="col-md-3 upper_dv" style="">
+            <div class="inner_dv">
+                <a href="/fashion/fb-groups/g-top11/"><img class="inner_image" src="{%static '/images/fashion2.jpg'%}"></a>
+            </div>
+        </div>
+        <div class="col-md-3 upper_dv" style="">
+            <div class="inner_dv">
+                <a href="/news/fb-groups/g-top12/"><img class="inner_image" src="{%static '/images/news2.jpg'%}"></a>
+            </div>
+        </div>
+        <div class="col-md-3 upper_dv" style="">
+            <div class="inner_dv">
+                <a href="/health/fb-group/g-top8/"><img class="inner_image" src="{%static '/images/health2.jpg'%}"></a>
+            </div>
+        </div>
+        <div class="col-md-3 upper_dv" style="">
+            <div class="inner_dv">
+                <a href="/tourism/fb-groups/g-top12/"><img class="inner_image" src="{%static '/images/tour2.jpg'%}"></a>
+            </div>
+        </div>
+        </div>
+
+        <h3>FaceBook Pages</h3>
+        <div class="row margin-row">
+
+        <div class="col-md-3 upper_dv" style="">
+            <div class="inner_dv">
+                <a href="/fashion/fb-page/p-top34/"><img class="inner_image" src="{%static '/images/fashion3.jpg'%}"></a>
+            </div>
+        </div>
+        <div class="col-md-3 upper_dv" style="">
+            <div class="inner_dv">
+                <a href="/news/fb-page/p-top14/"><img class="inner_image" src="{%static '/images/news3.jpg'%}"></a>
+            </div>
+        </div>
+        <div class="col-md-3 upper_dv" style="">
+            <div class="inner_dv">
+                <a href="/health/fb-page/p-top12/"><img class="inner_image" src="{%static '/images/health3.jpg'%}"></a>
+            </div>
+        </div>
+        <div class="col-md-3 upper_dv" style="">
+            <div class="inner_dv">
+                <a href="/tourism/fb-page/p-top14/"><img class="inner_image" src="{%static '/images/tour3.jpg'%}"></a>
+            </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock %}
