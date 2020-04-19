@@ -8,7 +8,7 @@ import itertools
 import time
 from django.contrib import messages
 from datetime import datetime
-from .models import Feedback,ContactForm
+from .models import Feedback,ContactForm,SearchForm
 
 
 def Data(items):
@@ -584,7 +584,8 @@ def health(request,type,filename):
 
 
 def about(request):
-    return render(request,"about-us.html")
+
+    return render(request,"about-us.html",)
 
 def contact(request):
     try:
@@ -747,3 +748,17 @@ def feedback(request):
     
 def error(request):
     return render(request,"error.html")
+
+
+def search(request):
+
+    if request.method == 'POST':
+        print(request.method)
+
+        name=request.POST['name']
+        result = SearchForm.objects.filter(name__contains=name)
+        print(result,len(result))
+        return render(request,"search.html",{"result":result})
+
+    else:
+        return redirect("/")

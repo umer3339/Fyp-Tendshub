@@ -28,15 +28,13 @@
     </style>
 </head>
 <body>
+    {% if info %}
+        <div class="alert alert-danger" style="width: 100%;padding: 15px;font-size: 16px;">
+            <strong>Alert !</strong> {{ info }}.
+          </div>
+    {% endif %}
     <div class="container-fluid">
-        {% if messages %}
 
-
-                <div class="alert alert-danger" style="width: 100%;padding: 15px;font-size: 16px;">
-                    <strong>Alert !</strong> {{ messages }}.
-                  </div>
-
-            {% endif %}
         <div class="row mt-5 ">
             <div class="col-12 col-md-4 offset-4 bg-light mt-5 mb-5 rounded-lg">
                 <h2 class="form-title mt-5" style="text-align:center">Create Account</h2>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    strong{
+        color:#000;
+        font-size: 14px;
+    }
+    strong:hover{
+        color:#FB8122;
+    }
+</style>
+
+<div class="container">
+    {% if result|length %}
+    <div style="margin-top:5%;">total result found : <strong>{{result|length}}</strong></div>
+    <div class="row" style="margin-top:3%;">
+        {% for i in result %}
+        <div class="col-md-3">
+            <p><a href="{{i.url}}"><strong>{{i.name}}</strong></a></p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <div style="margin-top:5%;">No result found</div>
+    {% endif %}
+</div>
+{% endblock %}

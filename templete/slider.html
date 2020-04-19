@@ -12,7 +12,11 @@
     outline: none;
     background-color: transparent;
     z-index:-1;
+    color:#FB8122;
   }
+  .searchTerm:focus {
+    color: #FB8122;
+   }
   .searchButton {
     width: 40px;
     height: 36px;
@@ -26,14 +30,17 @@
   }
 
 </style>
-
 <div class="container-fluid " >
     <div  class="row wrap" data-vide-bg="{% static 'video/Classical.mp4' %}" data-vide-options="loop: true, muted: true" style="">
-    <div class="search">
-        <input type="text" class="searchTerm" placeholder="What are you looking for?">
+    <form method="post" action="search/">
+        {% csrf_token %}
+        <div class="search">
+        <input type="text" name="name" class="searchTerm" placeholder="What are you looking for?">
         <button type="submit" class="searchButton">
           <i class="fa fa-search" style="font-size: 25px"></i>
        </button>
      </div>
+
     </div>
+    </form>
 </div>

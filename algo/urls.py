@@ -14,7 +14,8 @@ urlpatterns = [
     path('about/', views.about, name='about-page'),
     path('contact/', views.contact, name='contact-page'),
     path('feedback/', views.feedback, name='feedback'),
-
     path('reddit/<filename>/',views.reddit,name="reddit"),
-    path('error/', views.error, name='error')
+    path('error/', views.error, name='error'),
+    path('search/', views.search, name='search')
+
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

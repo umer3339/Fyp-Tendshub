@@ -36,23 +36,19 @@ def register(request):
 
                 info = "Username Already Taken"
                 print("Username Already Taken")
-                return render(request, 'register.html',{"messages":info})
+                return render(request, 'register.html',{"info":info})
             elif User.objects.filter(email=email):
                 info = "Email Already Used"
 
                 print("Email Already Used")
-                return render(request, 'register.html',{"messages":info})
+                return render(request, 'register.html',{"info":info})
             else:
                 user_data = User.objects.create_user(first_name=firstname, last_name=lastname, password=password,
                                                      email=email, username=username)
                 user_data.save()
                 return redirect("login")
         else:
-            info="Confirmation password didnot matched"
-
-            return render(request, 'register.html',{"messages":info})
-
-
+            return render(request, 'register.html',{"info":info})
     else:
 
         return render(request, 'register.html',{"messages":messages})

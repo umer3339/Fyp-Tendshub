@@ -29,6 +29,7 @@ a{
 .inner_dv{
 padding:1%;
 min-height:270px;
+max-height:271px;
 -webkit-box-shadow: 0px 5px 5px 5px rgba(211,211,211,0.4);
 -moz-box-shadow: 0px 5px 5px 5px rgba(211,211,211,0.4);
 box-shadow: 0px 5px 5px 5px rgba(211,211,211,0.4);
@@ -43,84 +44,169 @@ box-shadow: 0px 5px 5px 5px rgba(251,129,34,0.4);
  margin-top:5%
 }
 .inner_image{
-min-height:270px;max-height:271
+min-height:270px;
+max-height:271px;
+
+}
+.inner_image:hover{
+opacity:0.2;
+transition: .5s ease;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.inner_dv:hover .inner_image {
+  opacity: 0.2;
+  transition: .5s ease;
+}
+.inner_dv:hover .middle {
+  opacity: 0.7;
+}
+
+.text {
+  background-color: #FB8122;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+  width: 240px;
+}
+.trending-heading{
+    text-align: center;
+    font-size: 32px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
 }
 </style>
 {% include "slider.html" %}
     <div class="container" style="margin:3%">
-        <h3>Reddit</h3>
-        <div class="row margin-row" class="">
-
-        <div class="col-md-3 upper_dv" style="">
-            <div class="inner_dv">
-                <a href="/reddit/top31/"><img class="inner_image" src="{%static '/images/fashion1.jpeg'%}" style=""></a>
-            </div>
-        </div>
-        <div class="col-md-3 upper_dv" style="">
-            <div class="inner_dv">
-                <a href="/reddit/top100/"><img class="inner_image" src="{%static '/images/news1.jpg'%}"></a>
-            </div>
-        </div>
-        <div class="col-md-3 upper_dv" style="">
-            <div class="inner_dv">
-                <a href="/reddit/top/"><img class="inner_image" src="{%static '/images/health1.jpg'%}"></a>
-            </div>
-        </div>
-        <div class="col-md-3 upper_dv" style="">
-            <div class="inner_dv">
-                <a href="/reddit/top_30/"><img class="inner_image" src="{%static '/images/tour1.jpg'%}"></a>
-            </div>
-        </div>
-        </div>
-
-        <h3>FaceBook Groups</h3>
+        <h1 class="trending-heading">Trending Topics...</h1>
         <div class="row margin-row">
+            <div class="col-md-3 upper_dv" style="">
+                <div class="inner_dv">
+                    <a href="/reddit/top31/">
+                        <img class="inner_image" src="{%static '/images/fashion1.jpeg'%}" style="">
+                        <div class="middle">
+                            <div class="text">Reddit Fashion</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 upper_dv" style="">
+                <div class="inner_dv">
+                    <a href="/reddit/top100/"><img class="inner_image" src="{%static '/images/news1.jpg'%}">
+                    <div class="middle">
+                        <div class="text">Reddit News</div>
+                      </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 upper_dv" style="">
+                <div class="inner_dv">
+                    <a href="/reddit/top/"><img class="inner_image" src="{%static '/images/health1.jpg'%}">
+                    <div class="middle">
+                        <div class="text">Reddit Health</div>
+                    </div>
 
-        <div class="col-md-3 upper_dv" style="">
-            <div class="inner_dv">
-                <a href="/fashion/fb-groups/g-top11/"><img class="inner_image" src="{%static '/images/fashion2.jpg'%}"></a>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3 upper_dv" style="">
-            <div class="inner_dv">
-                <a href="/news/fb-groups/g-top12/"><img class="inner_image" src="{%static '/images/news2.jpg'%}"></a>
+            <div class="col-md-3 upper_dv" style="">
+                <div class="inner_dv">
+                    <a href="/reddit/top_30/"><img class="inner_image" src="{%static '/images/tour1.jpg'%}">
+                    <div class="middle">
+                        <div class="text">Reddit Tourism</div>
+                    </div>
+
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3 upper_dv" style="">
-            <div class="inner_dv">
-                <a href="/health/fb-group/g-top8/"><img class="inner_image" src="{%static '/images/health2.jpg'%}"></a>
-            </div>
-        </div>
-        <div class="col-md-3 upper_dv" style="">
-            <div class="inner_dv">
-                <a href="/tourism/fb-groups/g-top12/"><img class="inner_image" src="{%static '/images/tour2.jpg'%}"></a>
-            </div>
-        </div>
         </div>
 
-        <h3>FaceBook Pages</h3>
         <div class="row margin-row">
+            <div class="col-md-3 upper_dv" style="">
+                <div class="inner_dv">
+                    <a href="/fashion/fb-groups/g-top11/"><img class="inner_image" src="{%static '/images/fashion2.jpg'%}">
+                    <div class="middle">
+                        <div class="text">Facebook Groups Fashion</div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 upper_dv" style="">
+                <div class="inner_dv">
+                    <a href="/news/fb-groups/g-top12/"><img class="inner_image" src="{%static '/images/news2.jpg'%}">
+                    <div class="middle">
+                        <div class="text">Facebook Groups News</div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 upper_dv" style="">
+                <div class="inner_dv">
+                    <a href="/health/fb-group/g-top8/"><img class="inner_image" src="{%static '/images/health2.jpg'%}">
+                    <div class="middle">
+                        <div class="text">Facebook Groups Health</div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 upper_dv" style="">
+                <div class="inner_dv">
+                    <a href="/tourism/fb-groups/g-top12/"><img class="inner_image" src="{%static '/images/tour2.jpg'%}">
+                        <div class="middle">
+                            <div class="text">Facebook Groups Tourism</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
 
-        <div class="col-md-3 upper_dv" style="">
-            <div class="inner_dv">
-                <a href="/fashion/fb-page/p-top34/"><img class="inner_image" src="{%static '/images/fashion3.jpg'%}"></a>
+        <div class="row margin-row">
+            <div class="col-md-3 upper_dv" style="">
+                <div class="inner_dv">
+                    <a href="/fashion/fb-page/p-top34/"><img class="inner_image" src="{%static '/images/fashion3.jpg'%}">
+                    <div class="middle">
+                            <div class="text">Facebook Page Tourism</div>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3 upper_dv" style="">
-            <div class="inner_dv">
-                <a href="/news/fb-page/p-top14/"><img class="inner_image" src="{%static '/images/news3.jpg'%}"></a>
+            <div class="col-md-3 upper_dv" style="">
+                <div class="inner_dv">
+                    <a href="/news/fb-page/p-top14/"><img class="inner_image" src="{%static '/images/news3.jpg'%}">
+                    <div class="middle">
+                        <div class="text">Facebook Groups News</div>
+                    </div>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3 upper_dv" style="">
-            <div class="inner_dv">
-                <a href="/health/fb-page/p-top12/"><img class="inner_image" src="{%static '/images/health3.jpg'%}"></a>
+            <div class="col-md-3 upper_dv" style="">
+                <div class="inner_dv">
+                    <a href="/health/fb-page/p-top12/"><img class="inner_image" src="{%static '/images/health3.jpg'%}">
+                    <div class="middle">
+                            <div class="text">Facebook Groups Health</div>
+                    </div>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3 upper_dv" style="">
-            <div class="inner_dv">
-                <a href="/tourism/fb-page/p-top14/"><img class="inner_image" src="{%static '/images/tour3.jpg'%}"></a>
+            <div class="col-md-3 upper_dv" style="">
+                <div class="inner_dv">
+                    <a href="/tourism/fb-page/p-top14/"><img class="inner_image" src="{%static '/images/tour3.jpg'%}">
+                    <div class="middle">
+                            <div class="text">Facebook Groups Tourism</div>
+                    </div>
+                    </a>
+                </div>
             </div>
-        </div>
         </div>
     </div>
 
