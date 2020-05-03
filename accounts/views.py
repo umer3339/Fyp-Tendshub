@@ -16,8 +16,9 @@ def login(request):
             auth.login(request, user_login)
             return redirect("/")
         else:
-            print("Username or Password is invalid")
-            return redirect("login")
+            info = "Username or Password is invalid"
+            #print("Username or Password is invalid")
+            return render(request, 'signIn.html',{"info":info})
     else:
         return render(request, 'signIn.html')
 
@@ -76,6 +77,9 @@ def profile(request):
 
         return redirect("/accounts/profile")
     else:
-        profile = UserProfile.objects.filter(user_id=request.user.id).order_by('-id')[:1]
-        print(profile[0])
-        return render(request,"profile.html",{"profile":profile[0]})
+        try:
+            profile = UserProfile.objects.filter(user_id=request.user.id).order_by('-id')[:1]
+            print(profile[0])
+            return render(request,"profile.html",{"profile":profile[0]})
+        except:
+            return render(request, "profile.html")
