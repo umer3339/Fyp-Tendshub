@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{%static 'css/profile.css' %}" >
+
+
+
+<div class="container emp-profile">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <form method="post">
+                            {% csrf_token %}
+                        <div class="profile-img">
+                            {% with image=profile.avatar %}
+
+                            <img src="../{{image}}"
+                                 onerror="this.onerror=null; this.src='https://www.oneworldplayproject.com/wp-content/uploads/2016/03/avatar-1024x1024.jpg'"
+                                 alt="" style="width:230px;height:230px"/>
+                            {% endwith %}
+                            <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="image"/>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <input type="submit" class="btn btn-primary col-8" value="Update Image">
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Username</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.username}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>First Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.first_name}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Last Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.last_name}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.email}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Phone</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>123 456 7890</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Date Joined</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.date_joined}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Profession</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.update_last_login}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="/accounts/password_change/" class="profile-edit-btn" style="width:100%" name="btnAddMore">Change Password</a>
+                    </div>
+                </div>
+
+        </div>
+
+{% endblock %}

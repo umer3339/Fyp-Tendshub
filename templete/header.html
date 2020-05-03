@@ -378,7 +378,7 @@ text-decoration: none !important;
 
                         {% if request.user.is_authenticated %}
                         <li class="my-auto"><a href="/accounts/logout">Logout</a></li>
-                        <li class="my-auto"><a href="#">Hello, {{request.user.username}}</a></li>
+                        <li class="my-auto"><a href="/accounts/profile">Hello, {{request.user.username}}</a></li>
                         {% else %}
                         <li class="my-auto"><a href="/accounts/login">Login</a></li>
                         <li class="my-auto"><a href="/accounts/register">Register</a></li>

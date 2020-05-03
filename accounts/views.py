@@ -1,6 +1,7 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth.models import auth,User
 from django.contrib import messages
+from accounts.models import UserProfile
 from django.contrib.auth.forms import UserChangeForm
 # Create your views here.
 
@@ -48,6 +49,7 @@ def register(request):
                 user_data.save()
                 return redirect("login")
         else:
+            info="Password didn't match"
             return render(request, 'register.html',{"info":info})
     else:
 
@@ -58,3 +60,18 @@ def register(request):
 def logout(request):
     auth.logout(request)
     return redirect("/")
+
+
+def profile(request):
+    #if request.method == "POST":
+        #image = request.FILE['image']
+        #user_image=UserProfile.objects.get(user_id=request.user.id)
+        #print(image)
+        #print(user_image.avatar)
+        #user_image.avatar="/static/profile_images/"+image
+        #ser_image.save()
+
+    #    return render(request, "profile.html")
+    #else:
+    #profile=UserProfile.objects.get(user_id=request.user.id)
+    return render(request,"profile.html",{"profile":profile})

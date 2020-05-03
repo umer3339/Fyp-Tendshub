@@ -8,9 +8,10 @@ urlpatterns = [
     path('login', views.login, name='signin'),
     path('register', views.register, name='register'),
     path("logout" ,views.logout, name="logout"),
+    path("profile",views.profile, name="profile"),
 
-    #url('email-verify/(?P<token>[\w\-]+)',register.confirm_email),
-    #url('resend-confirmation/(?P<email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})',register.resend_confirmation_email),
+    #url('email-verify/(?P<token>[\w\-]+)',views.confirm_email),
+    #url('resend-confirmation/(?P<email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})',views.resend_confirmation_email),
 
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'),
                                     name='password_change_done'),
@@ -24,9 +25,4 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'),
                                     name='password_reset_complete'),
 
-    #url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
-    #url(r'^password_reset/done/$', auth_views.password_reset_done, name='password_reset_done'),
-    #url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-    #auth_views.password_reset_confirm, name='password_reset_confirm'),
-    #url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
 ]
