@@ -10,7 +10,7 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <form method="post">
+                        <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                         <div class="profile-img">
                             {% with image=profile.avatar %}
@@ -21,11 +21,12 @@
                             {% endwith %}
                             <div class="file btn btn-lg btn-primary">
                                 Change Photo
-                                <input type="file" name="image"/>
+                                <input type="file" name="image" id="image_file" onchange="submit_btn();"/>
                             </div>
+                            <div id="path_value"></div>
                         </div>
                         <div class="col-md-2"></div>
-                        <input type="submit" class="btn btn-primary col-8" value="Update Image">
+                        <input type="submit" class="btn btn-primary col-8" value="Update Image" id="submit-btn" style="display:none">
                         </form>
                     </div>
                     <div class="col-md-6">
@@ -94,4 +95,15 @@
 
         </div>
 
+
+<script>
+    function submit_btn(){
+        s=document.getElementById("image_file")
+        if (s.files.length != 0 ){
+          btn=document.getElementById("submit-btn")
+          btn.style.display="block"
+        }
+    }
+
+</script>
 {% endblock %}

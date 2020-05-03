@@ -63,15 +63,19 @@ def logout(request):
 
 
 def profile(request):
-    #if request.method == "POST":
-        #image = request.FILE['image']
-        #user_image=UserProfile.objects.get(user_id=request.user.id)
-        #print(image)
-        #print(user_image.avatar)
-        #user_image.avatar="/static/profile_images/"+image
-        #ser_image.save()
+    if request.method == "POST":
+        try:
+            image = request.FILES['image']
+            #image = request.POST.get('image')#['image']
+            print(image)
+            if image:
+                UserProfile.objects.create(user=User.objects.get(id=request.user.id), avatar=image)
+                #user_image=UserProfile.objects.get(user_id=request.user.id)
+        except Exception as e:
+            print(e)
 
-    #    return render(request, "profile.html")
-    #else:
-    #profile=UserProfile.objects.get(user_id=request.user.id)
-    return render(request,"profile.html",{"profile":profile})
+        return redirect("/accounts/profile")
+    else:
+        profile = UserProfile.objects.filter(user_id=request.user.id).order_by('-id')[:1]
+        print(profile[0])
+        return render(request,"profile.html",{"profile":profile[0]})
